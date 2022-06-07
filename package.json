@@ -1,7 +1,7 @@
 {
   "name": "halo-theme-maxer",
   "description": "如梦一般，随风而立。",
-  "version": "0.1",
+  "version": "0.0.1",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
