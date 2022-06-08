@@ -110,11 +110,8 @@ activeIndex.value = __.findIndex(navBarConfig.value, (o) => o.url === route.path
 
 
 const initNavBar = () => {
-  console.log("进行初始化navbar")
   navHighlightFlag.value = true;
-  console.log(activeIndex.value)
   const targetElement = navBarUlRef.value?.children[activeIndex.value] as HTMLElement;
-  console.log(targetElement)
   navHighlightWidth.value = targetElement?.clientWidth;
   navHighlightX.value = targetElement?.offsetLeft;
 }
