@@ -8,6 +8,7 @@ declare module '@vue/runtime-core' {
     AButton: typeof import('@arco-design/web-vue')['Button']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    NuxtLayout: typeof import('#components')['NuxtLayout']
   }
 }
 

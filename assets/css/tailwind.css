@@ -1,3 +1,5 @@
+@import "animate.css";
+
 /**
  * @作者: Seale
  * @时间: 2022/6/6
@@ -7,4 +9,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*引入字体*/
+
+html{
+    font-size: 10px;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+
 

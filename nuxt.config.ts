@@ -11,9 +11,9 @@ export default defineNuxtConfig({
     modules: [
         '@pinia/nuxt',
         './modules/arco',
-        '@nuxtjs/tailwindcss'
+        '@nuxtjs/tailwindcss',
     ],
     build: {
         transpile: ['compute-scroll-into-view'],
-    },
+    }
 })

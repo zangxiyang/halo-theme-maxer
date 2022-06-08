@@ -2,6 +2,7 @@
   "name": "halo-theme-maxer",
   "description": "如梦一般，随风而立。",
   "version": "0.0.1",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -13,12 +14,17 @@
     "@arco-design/web-vue": "^2.29.1",
     "@nuxtjs/tailwindcss": "^5.1.2",
     "@pinia/nuxt": "^0.1.9",
-    "daisyui": "^2.15.2",
+    "@types/lodash": "^4.14.182",
+    "autoprefixer": "^10.4.7",
     "less": "^4.1.2",
     "less-loader": "^11.0.0",
     "nuxt": "3.0.0-rc.3",
     "pinia": "^2.0.14",
+    "sass": "^1.52.2",
     "typescript": "^4.7.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "loadsh": "^0.0.4"
+  }
 }
