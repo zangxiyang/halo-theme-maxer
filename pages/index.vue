@@ -1,9 +1,6 @@
 <template>
-
-
-
-
 <div class="Index">
+
   <a-button @click="click" type="primary" >显示Message</a-button>
   <br><br>
   用户名: {{userName}}
@@ -23,10 +20,14 @@
 <script lang="ts" setup>
 
 import {Message, Notification} from "@arco-design/web-vue";
-import {definePageMeta, onMounted, ref} from "#imports";
+import {definePageMeta, onMounted, ref, useFetch, useRuntimeConfig} from "#imports";
 import useUserStore from "~/store/module/user";
 import {storeToRefs} from "pinia";
 
+
+const config = useRuntimeConfig();
+
+console.log(config.public.apiBase)
 
 // 页面配置
 definePageMeta({
@@ -51,6 +52,8 @@ const click = () => {
 onMounted(() => {
   Message.success("挂载成功");
 })
+
+
 
 
 </script>

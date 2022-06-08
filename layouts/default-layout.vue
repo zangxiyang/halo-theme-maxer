@@ -11,8 +11,9 @@
     <main class="main-container mt-24">
       <slot/>
     </main>
-    <!-- footer -->
-    <!-- TODO -->
+
+
+    <!--FOOTER-->
   </div>
 </template>
 

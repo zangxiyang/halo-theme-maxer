@@ -4,10 +4,10 @@ import {defineNuxtConfig} from 'nuxt'
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
     loadingIndicator: undefined,
-    /*    experimental: {
-            reactivityTransform: true,
-            viteNode: true,
-        },*/
+/*    experimental: {
+        reactivityTransform: true,
+        viteNode: true,
+    },*/
     modules: [
         '@pinia/nuxt',
         './modules/arco',
@@ -15,5 +15,10 @@ export default defineNuxtConfig({
     ],
     build: {
         transpile: ['compute-scroll-into-view'],
+    },
+    runtimeConfig: {
+        public: {
+            apiBase: 'http://localhost:8090'
+        }
     }
 })

@@ -14,9 +14,11 @@ module.exports = {
       height:{
         'banner': '370px',
         '2.8': '2.8rem',
+        '3.2': '3.2rem'
       },
       minHeight:{
         '24': '6rem'
+
       },
       minWidth:{
         '1300': '1300px'

@@ -20,21 +20,20 @@
         </div>
         <div class="maxer-nav-right h-24 relative flex flex-1 items-center justify-end pr-7">
           <div class="relative">
-            <div class="z-1 bg-menu"
-                 :class="{'nav-highlight': navHighlightFlag}"
+            <div class="nav-highlight z-1 bg-menu"
                  :style="{width: `${navHighlightWidth}px`, opacity: navHighlightFlag? '1':'0',
-                 transitionDuration: navHighlightFlag? '.15s': '0', transform: navHighlightFlag? `translateX(${navHighlightX}px)`: 'none'}"
-                 style="height: 28px;"></div>
+                 transitionDuration: navHighlightFlag? '.25s': '0', transform: navHighlightFlag? `translateX(${navHighlightX}px)`: 'none'}"
+                 style="height: 32px"></div>
             <ul ref="navBarUlRef" class="flex items-center">
-              <nuxt-link class="ml-6 first:ml-0 h-2.8 flex items-center z-50"
-                         v-for="item in navBarConfig"
+              <nuxt-link class="ml-6 first:ml-0 h-3.2 flex items-center z-50"
+                         v-for="(item,index) in navBarConfig"
                          @mouseenter="navBarClickOrHover"
                          @mouseleave="navBarLeave"
-                         @click="navBarClick(item)"
-                         :key="item.title" :to="item.link">
+                         @click="navBarClick(index,item)"
+                         :key="index" :to="item.url">
                 <a-button class="h-full z-50"
-                          size="small" type="text" style="color: #676767">
-                  {{ item.title }}
+                          size="small" type="text" style="color: #676767; height: 32px">
+                  {{ item.name }}
                 </a-button>
               </nuxt-link>
             </ul>
@@ -56,9 +55,10 @@
 
 <script lang="ts" setup>
 
-import {defineComponent, navigateTo, nextTick, ref, useHead, useRoute} from "#imports";
+import {defineComponent, navigateTo, nextTick, onMounted, ref, useHead, useRoute} from "#imports";
 import {animateCss} from "~/utils/animate";
 import __ from "lodash";
+import {Menu, queryMenusList} from "~/api/modules/menu";
 
 
 defineComponent({
@@ -71,18 +71,15 @@ const dropDownRef = ref<HTMLElement>();
 const maskRef = ref<HTMLElement>();
 const navBarUlRef = ref<HTMLElement>();
 
-const navBarConfig = [
-  {
-    index: 0,
-    title: '首页',
-    link: '/'
-  },
-  {
-    index: 1,
-    title: '超长测试超长测试',
-    link: '/hi'
-  }
-];
+/**
+ * 菜单
+ */
+const navBarConfig = ref<Menu[]>([]);
+
+const {data} = await queryMenusList();
+navBarConfig.value = data.value.data;
+// 进行排序 id小的排在开头
+navBarConfig.value = __.sortBy(navBarConfig.value, (o) => o.id);
 
 
 // 右侧 NavBar 效果
@@ -100,8 +97,8 @@ const navBarLeave = () => {
   initNavBar();
 }
 
-const navBarClick = (item) => {
-  activeIndex.value = item.index;
+const navBarClick = (index,item) => {
+  activeIndex.value = index;
   initNavBar();
   navigateTo(item.link);
 }
@@ -109,18 +106,23 @@ const navBarClick = (item) => {
 
 // router
 const route = useRoute();
-activeIndex.value = __.findIndex(navBarConfig, ['link', route.path]);
-if (activeIndex.value >= 0) {
-  navHighlightFlag.value = true;
-  nextTick().then(() => {
-    initNavBar();
-  })
-}
+activeIndex.value = __.findIndex(navBarConfig.value, (o) => o.url === route.path);
+
+
 const initNavBar = () => {
+  console.log("进行初始化navbar")
+  navHighlightFlag.value = true;
+  console.log(activeIndex.value)
   const targetElement = navBarUlRef.value?.children[activeIndex.value] as HTMLElement;
+  console.log(targetElement)
   navHighlightWidth.value = targetElement?.clientWidth;
   navHighlightX.value = targetElement?.offsetLeft;
 }
+
+onMounted(()=>{
+  // 节点挂载完成后进行初始化
+  initNavBar();
+})
 
 
 // 更多按钮点击事件
@@ -207,7 +209,7 @@ const navBarDropDownClose = () => {
   position: absolute;
   left: 0;
   top: 0;
-  transition: .15s ease;
+  transition: .25s ease;
   transition-property: width, transform, opacity;
   border-radius: .375rem;
 }
