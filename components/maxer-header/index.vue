@@ -1,9 +1,4 @@
 <template>
-  <Head>
-    <Link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <Link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <Link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=ZCOOL+QingKe+HuangYou&display=swap"/>
-  </Head>
   <header class="maxer-header w-full ">
     <nav class="navbar fixed top-0 left-0 right-0 border-b border-b-gray-200 bg-white z-50">
       <div class="navbar-container relative flex w-full h-24 min-h-24 max-h-24 box-border z-50">
@@ -31,16 +26,17 @@
                  transitionDuration: navHighlightFlag? '.15s': '0', transform: navHighlightFlag? `translateX(${navHighlightX}px)`: 'none'}"
                  style="height: 28px;"></div>
             <ul ref="navBarUlRef" class="flex items-center">
-                <router-link class="ml-6 first:ml-0 h-2.8 flex items-center z-50"
-                             v-for="item in navBarConfig"
-                             @mouseenter="navBarClickOrHover"
-                             @mouseleave="navBarLeave"
-                             :key="item.title" :to="item.link">
-                  <a-button class="h-full z-50"
-                            size="small" type="text" style="color: #676767">
-                    {{ item.title }}
-                  </a-button>
-                </router-link>
+              <nuxt-link class="ml-6 first:ml-0 h-2.8 flex items-center z-50"
+                         v-for="item in navBarConfig"
+                         @mouseenter="navBarClickOrHover"
+                         @mouseleave="navBarLeave"
+                         @click="navBarClick(item)"
+                         :key="item.title" :to="item.link">
+                <a-button class="h-full z-50"
+                          size="small" type="text" style="color: #676767">
+                  {{ item.title }}
+                </a-button>
+              </nuxt-link>
             </ul>
           </div>
         </div>
@@ -60,7 +56,7 @@
 
 <script lang="ts" setup>
 
-import {defineComponent, nextTick, ref, useHead, useRoute} from "#imports";
+import {defineComponent, navigateTo, nextTick, ref, useHead, useRoute} from "#imports";
 import {animateCss} from "~/utils/animate";
 import __ from "lodash";
 
@@ -89,37 +85,41 @@ const navBarConfig = [
 ];
 
 
-
-
 // 右侧 NavBar 效果
 const navHighlightWidth = ref(0);
 const navHighlightFlag = ref(false);
 const navHighlightX = ref(0);
+const activeIndex = ref(0);
 
-
-const navBarClickOrHover = (event)=>{
+const navBarClickOrHover = (event) => {
   const targetElement = event.target as HTMLElement
   navHighlightWidth.value = targetElement.clientWidth;
   navHighlightX.value = targetElement.offsetLeft;
 }
-const navBarLeave = ()=>{
+const navBarLeave = () => {
   initNavBar();
+}
+
+const navBarClick = (item) => {
+  activeIndex.value = item.index;
+  initNavBar();
+  navigateTo(item.link);
 }
 
 
 // router
 const route = useRoute();
-const activeIndex = __.findIndex(navBarConfig,['link', route.path]);
-if (activeIndex >= 0){
+activeIndex.value = __.findIndex(navBarConfig, ['link', route.path]);
+if (activeIndex.value >= 0) {
   navHighlightFlag.value = true;
-  nextTick().then(()=>{
+  nextTick().then(() => {
     initNavBar();
   })
 }
-const initNavBar = ()=>{
-  const targetElement = navBarUlRef.value.children[activeIndex] as HTMLElement;
-  navHighlightWidth.value = targetElement.clientWidth;
-  navHighlightX.value = targetElement.offsetLeft;
+const initNavBar = () => {
+  const targetElement = navBarUlRef.value?.children[activeIndex.value] as HTMLElement;
+  navHighlightWidth.value = targetElement?.clientWidth;
+  navHighlightX.value = targetElement?.offsetLeft;
 }
 
 
@@ -136,7 +136,7 @@ const moreAppClick = async () => {
   }
 }
 
-const navBarDropDownClose = ()=>{
+const navBarDropDownClose = () => {
   animateCss(maskRef, 'animate__animated animate__fadeOut animate__faster');
   animateCss(dropDownRef, 'animate__animated animate__slideOutUp animate__faster animate__delay-0.6s', () => {
     show.value = false;
@@ -168,23 +168,27 @@ const navBarDropDownClose = ()=>{
   top: 60px;
   width: 100%;
   display: none;
-  &.show{
+
+  &.show {
     display: block;
   }
-  .wrapper{
-    transition: all .3s cubic-bezier(.16,1,.3,1);
+
+  .wrapper {
+    transition: all .3s cubic-bezier(.16, 1, .3, 1);
   }
 }
-.mask{
+
+.mask {
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, .5);
   z-index: 49;
   display: none;
-  &.show{
+
+  &.show {
     display: block;
   }
 }
@@ -193,13 +197,13 @@ const navBarDropDownClose = ()=>{
   font-family: 'Audiowide', cursive;
 }
 
-::v-deep(.maxer-nav-right){
-  .arco-btn-text:hover, .arco-btn-text[type=button]:hover, .arco-btn-text[type=submit]:hover{
+::v-deep(.maxer-nav-right) {
+  .arco-btn-text:hover, .arco-btn-text[type=button]:hover, .arco-btn-text[type=submit]:hover {
     background: none;
   }
 }
 
-.nav-highlight{
+.nav-highlight {
   position: absolute;
   left: 0;
   top: 0;
@@ -208,7 +212,7 @@ const navBarDropDownClose = ()=>{
   border-radius: .375rem;
 }
 
-.bg-menu{
+.bg-menu {
   background-color: rgba(215, 217, 218, 0.5);
 }
 

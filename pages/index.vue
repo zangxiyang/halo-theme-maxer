@@ -3,6 +3,7 @@
 
 
 
+<div class="Index">
   <a-button @click="click" type="primary" >显示Message</a-button>
   <br><br>
   用户名: {{userName}}
@@ -14,6 +15,7 @@
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
 
 
 </template>
