@@ -11,10 +11,10 @@
             </a-button>
           </div>
           <div class="logo ml-7 select-none" title="极束科技">
-            <router-link to="/" class="flex items-center">
+            <nuxt-link to="/" class="flex items-center" @click="logoClick">
               <img src="@/assets/img/logo.png" alt="LOGO" style="height: 30px; width: auto">
               <span class="logo-text text-4xl ml-2">Maxer Theme</span>
-            </router-link>
+            </nuxt-link>
           </div>
 
         </div>
@@ -107,6 +107,16 @@ const navBarClick = (index,item) => {
 // router
 const route = useRoute();
 activeIndex.value = __.findIndex(navBarConfig.value, (o) => o.url === route.path);
+
+
+// LOGO被点击
+const logoClick = ()=>{
+  // 计算当前的首页的index
+  activeIndex.value = __.findIndex(navBarConfig.value, (o) => o.url === '/');
+  // 重新进行初始化navbarHighlight
+  initNavBar();
+  navigateTo("/");
+}
 
 
 const initNavBar = () => {

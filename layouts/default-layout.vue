@@ -2,6 +2,7 @@
   <div class="maxer-layout">
     <!-- header -->
     <Head>
+      <Meta name="description" content="一个基于SSR渲染的Halo主题"/>
       <Link rel="preconnect" href="https://fonts.googleapis.com"/>
       <Link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
       <Link rel="stylesheet"

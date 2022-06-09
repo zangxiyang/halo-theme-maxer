@@ -10,7 +10,7 @@
 import {definePageMeta} from "#imports";
 
 definePageMeta({
-  middleware: 'auth',
+  middleware: ['auth'],
   layout: 'default-layout'
 })
 </script>

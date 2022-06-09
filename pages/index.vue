@@ -1,6 +1,5 @@
 <template>
 <div class="Index">
-
   <a-button @click="click" type="primary" >显示Message</a-button>
   <br><br>
   用户名: {{userName}}
@@ -20,7 +19,7 @@
 <script lang="ts" setup>
 
 import {Message, Notification} from "@arco-design/web-vue";
-import {definePageMeta, onMounted, ref, useFetch, useRuntimeConfig} from "#imports";
+import {definePageMeta, onMounted, ref, useFetch, useHead, useRuntimeConfig} from "#imports";
 import useUserStore from "~/store/module/user";
 import {storeToRefs} from "pinia";
 
@@ -32,7 +31,10 @@ console.log(config.public.apiBase)
 // 页面配置
 definePageMeta({
   middleware: 'auth',
-  layout: 'default-layout'
+  layout: 'default-layout',
+})
+useHead({
+  title: 'Maxer 主题'
 })
 
 // store
