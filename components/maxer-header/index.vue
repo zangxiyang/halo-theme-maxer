@@ -100,7 +100,7 @@ const navBarLeave = () => {
 const navBarClick = (index,item) => {
   activeIndex.value = index;
   initNavBar();
-  navigateTo(item.link);
+  navigateTo(item.url);
 }
 
 

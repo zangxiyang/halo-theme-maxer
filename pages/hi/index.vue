@@ -1,5 +1,7 @@
 <template>
-  <div>HI测试</div>
+  <div class="index">
+    HI测试
+  </div>
 </template>
 
 <script lang="ts" setup>
