@@ -15,10 +15,5 @@ export default defineNuxtConfig({
     ],
     build: {
         transpile: ['compute-scroll-into-view'],
-    },
-    runtimeConfig: {
-        public: {
-            apiBase: 'http://localhost:8090'
-        }
     }
 })

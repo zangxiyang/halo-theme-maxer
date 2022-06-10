@@ -1,6 +1,8 @@
 <template>
-  <header class="maxer-header w-full ">
-    <nav class="navbar fixed top-0 left-0 right-0 border-b border-b-gray-200 bg-white z-50">
+  <header class="maxer-header w-full">
+    <nav class="navbar fixed top-0 left-0 right-0 border-b border-b-gray-200 bg-white z-50"
+         :class="{'bg-opacity-90 backdrop-blur': show === false}"
+    >
       <div class="navbar-container relative flex w-full h-24 min-h-24 max-h-24 box-border z-50">
         <div class="maxer-nav-left h-24 flex items-center">
           <div class="more-apps pl-7 pr-7 relative">
@@ -10,10 +12,11 @@
               </template>
             </a-button>
           </div>
-          <div class="logo ml-7 select-none" title="极束科技">
-            <nuxt-link to="/" class="flex items-center" @click="logoClick">
-              <img src="@/assets/img/logo.png" alt="LOGO" style="height: 30px; width: auto">
-              <span class="logo-text text-4xl ml-2">Maxer Theme</span>
+          <div class="logo ml-7 select-none" :title="blogTitle">
+            <nuxt-link to="/" class="logo-text flex items-center transition pl-7 pr-7 pt-3 pb-3 rounded-xl" @click="logoClick">
+              <div class="text-4xl flex justify-center">
+                <span class="text-logo duration-200 relative">{{ textLogo }}</span>
+              </div>
             </nuxt-link>
           </div>
 
@@ -59,6 +62,8 @@ import {defineComponent, navigateTo, nextTick, onMounted, ref, useHead, useRoute
 import {animateCss} from "~/utils/animate";
 import __ from "lodash";
 import {Menu, queryMenusList} from "~/api/modules/menu";
+import useSettingStore from "~/store/module/setting";
+import {storeToRefs} from "pinia";
 
 
 defineComponent({
@@ -70,6 +75,13 @@ const show = ref(false);
 const dropDownRef = ref<HTMLElement>();
 const maskRef = ref<HTMLElement>();
 const navBarUlRef = ref<HTMLElement>();
+
+
+/*
+* Setting Logo
+* */
+const settingStore = useSettingStore()
+const {textLogo, blogTitle} = storeToRefs(settingStore);
 
 /**
  * 菜单
@@ -223,6 +235,42 @@ const navBarDropDownClose = () => {
 
 .bg-menu {
   background-color: rgba(215, 217, 218, 0.5);
+}
+
+.logo-text{
+  opacity: 1;
+  transition: .3s;
+
+  .text-logo{
+    transition: .3s;
+  }
+  &:after{
+    background: url("@/assets/img/home.png") no-repeat 50% 50%;
+    opacity: 0;
+    position: absolute;
+    display: flex;
+    z-index: 51;
+    height: 74px;
+    width: 74px;
+    background-size: cover;
+    content: '';
+    transition: .3s ease-in;
+    transform: scale(.4);
+  }
+  &:hover{
+    background: #425AEF;
+    color: #fff;
+    box-shadow: 0 8px 12px -3px #4259ef23;
+    .text-logo{
+      opacity: 0;
+      transition: .3s;
+    }
+    &:after{
+      opacity: 1;
+      transform: translateY(0) scale(.3);
+      transition-timing-function: ease-in;
+    }
+  }
 }
 
 </style>

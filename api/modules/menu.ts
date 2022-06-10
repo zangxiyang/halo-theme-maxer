@@ -6,7 +6,7 @@
  */
 import {useFetch} from "#imports";
 import {API_CONSTANT, BaseResp} from "~/api";
-import {AsyncData, FetchResult} from "#app";
+import {AsyncData} from "#app";
 
 
 export interface Menu{
