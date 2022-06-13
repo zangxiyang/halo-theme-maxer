@@ -13,9 +13,12 @@
             </a-button>
           </div>
           <div class="logo ml-7 select-none" :title="blogTitle">
-            <nuxt-link to="/" class="logo-text flex items-center transition pl-7 pr-7 pt-3 pb-3 rounded-xl" @click="logoClick">
+            <nuxt-link to="/" class="logo-text relative flex items-center transition pl-7 pr-7 pt-3 pb-3 rounded-xl" @click="logoClick">
               <div class="text-4xl flex justify-center">
                 <span class="text-logo duration-200 relative">{{ textLogo }}</span>
+              </div>
+              <div class="maxer-icon-home">
+                <div class="icon-home"></div>
               </div>
             </nuxt-link>
           </div>
@@ -64,6 +67,7 @@ import __ from "lodash";
 import {Menu, queryMenusList} from "~/api/modules/menu";
 import useSettingStore from "~/store/module/setting";
 import {storeToRefs} from "pinia";
+import {Message} from "@arco-design/web-vue";
 
 
 defineComponent({
@@ -88,8 +92,10 @@ const {textLogo, blogTitle} = storeToRefs(settingStore);
  */
 const navBarConfig = ref<Menu[]>([]);
 
-const {data} = await queryMenusList();
-navBarConfig.value = data.value.data;
+const {data,error} = await queryMenusList();
+if (!error.value){
+  navBarConfig.value = data.value.data;
+}
 // 进行排序 id小的排在开头
 navBarConfig.value = __.sortBy(navBarConfig.value, (o) => o.id);
 
@@ -244,18 +250,26 @@ const navBarDropDownClose = () => {
   .text-logo{
     transition: .3s;
   }
-  &:after{
-    background: url("@/assets/img/home.png") no-repeat 50% 50%;
-    opacity: 0;
+  .maxer-icon-home{
     position: absolute;
+    opacity: 0;
     display: flex;
+    justify-content: center;
+    top: 0;
+    left: 0;
     z-index: 51;
-    height: 74px;
-    width: 74px;
+    height: 25px;
+    width: 100%;
     background-size: cover;
     content: '';
     transition: .3s ease-in;
     transform: scale(.4);
+    .icon-home{
+      background: url("@/assets/img/home.png") no-repeat 50% 50%;
+      background-size: cover;
+      height: 75px;
+      width: 75px;
+    }
   }
   &:hover{
     background: #425AEF;
@@ -265,7 +279,7 @@ const navBarDropDownClose = () => {
       opacity: 0;
       transition: .3s;
     }
-    &:after{
+    .maxer-icon-home{
       opacity: 1;
       transform: translateY(0) scale(.3);
       transition-timing-function: ease-in;

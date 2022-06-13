@@ -24,7 +24,9 @@
     "typescript": "^4.7.3"
   },
   "dependencies": {
+    "@icon-park/vue-next": "^1.4.0",
     "animate.css": "^4.1.1",
-    "loadsh": "^0.0.4"
+    "loadsh": "^0.0.4",
+    "swiper": "^8.2.2"
   }
 }

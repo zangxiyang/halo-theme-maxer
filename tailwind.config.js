@@ -11,6 +11,12 @@ module.exports = {
     ],
     theme: {
         extend: {
+            color:{
+                'maxer': '#425AEF'
+            },
+            textColor: {
+                'maxer': '#425aef'
+            },
             height: {
                 'banner': '370px',
                 '2.8': '2.8rem',
@@ -24,7 +30,8 @@ module.exports = {
 
             },
             minWidth: {
-                '1300': '1300px'
+                '1300': '1300px',
+                '10': '10rem'
             },
             colors: {
                 'footer-gray': '#f7f8fa'

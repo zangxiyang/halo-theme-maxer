@@ -15,5 +15,8 @@ export default defineNuxtConfig({
     ],
     build: {
         transpile: ['compute-scroll-into-view'],
+    },
+    vite:{
+
     }
 })
