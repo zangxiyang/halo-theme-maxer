@@ -12,12 +12,15 @@ import {SettingState, UserState} from "~/store/module/types/storeTypes";
 const useSettingStore = defineStore('setting',{
     state: (): SettingState=>{
         return {
+            /*  主题配置 */
             blogTitle: 'Maxer',
             indexNotice: '',
             keywords: '',
             description: '',
             favIcon: '',
             textLogo: '',
+            /* Nuxt程序 */
+
         }
     },
     actions: {

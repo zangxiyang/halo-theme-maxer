@@ -73,8 +73,11 @@ defineComponent({
 })
 
 
-const {data} = querySheetBySlug();
+const {data, error} = querySheetBySlug();
 
+if (!error.value){
+
+}
 
 const sayList = ref([
   {

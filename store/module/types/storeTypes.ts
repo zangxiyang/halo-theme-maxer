@@ -11,4 +11,9 @@ export interface UserState {
     nickName?: string
 }
 
-export type SettingState = Partial<Settings> 
+export type SettingState = Partial<Settings> & {
+
+    /* 程序配置 */
+    blogSaySlugId?: number
+}
+

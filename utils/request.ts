@@ -17,7 +17,7 @@ const baseURL = import.meta.env.VITE_HALO_BASE_API;
 const api_access_key = import.meta.env.VITE_API_ACCESS_KEY;
 
 
-export function request<T>(url: string, method: Methods, params: SearchParams, data?: any): AsyncData<BaseResp<T>, any>{
+export function request<T>(url: string, method: Methods, params?: SearchParams, data?: any): AsyncData<BaseResp<T>, any>{
     return useFetch(url,{
         baseURL,
         method,
@@ -27,9 +27,10 @@ export function request<T>(url: string, method: Methods, params: SearchParams, d
             api_access_key
         },
         async onResponse({request,response}){
+            // TODO 业务逻辑
         },
         async onRequest({request, options}){
-            console.log(request,options)
+
         }
     }) as AsyncData<BaseResp<T>, any>;
 }
