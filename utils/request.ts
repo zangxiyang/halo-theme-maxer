@@ -7,30 +7,38 @@
 
 /* halo api url */
 import {useFetch} from "#imports";
+import {AsyncData} from "#app";
+import {BaseResp} from "~/api";
+import {SearchParams} from "ohmyfetch";
 
 
-const baseApi = import.meta.env.VITE_HALO_BASE_API;
+const baseURL = import.meta.env.VITE_HALO_BASE_API;
 
 const api_access_key = import.meta.env.VITE_API_ACCESS_KEY;
 
 
-export function request(url: string, method: Methods, params?: object, data?: any){
+export function request<T>(url: string, method: Methods, params: SearchParams, data?: any): AsyncData<BaseResp<T>, any>{
     return useFetch(url,{
-        baseURL: baseApi,
-        method: method,
-        params: params,
+        baseURL,
+        method,
+        params,
         body: data,
         headers: {
             api_access_key
+        },
+        async onResponse({request,response}){
+        },
+        async onRequest({request, options}){
+            console.log(request,options)
         }
-    });
+    }) as AsyncData<BaseResp<T>, any>;
 }
 
 
 // 请求方式
 export enum Methods {
-    GET = 'get',
-    POST = 'post',
-    DELETE = 'delete',
-    PUT = 'put',
+    GET = 'GET',
+    POST = 'POST',
+    DELETE = 'DELETE',
+    PUT = 'PUT',
 }

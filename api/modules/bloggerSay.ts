@@ -4,8 +4,9 @@
  * @版本: V1.0
  * @说明:
  */
-import {useFetch} from "#imports";
-import {API_CONSTANT} from "~/api";
+import {API_CONSTANT, BaseResp} from "~/api";
+import {Methods, request} from "~/utils/request";
+import {AsyncData} from "#app";
 
 
 export interface Sheets{
@@ -15,9 +16,7 @@ export interface Sheets{
 
 
 export const querySheetBySlug = (slugName: string = 'bloggersay')=>{
-    return useFetch(`${API_CONSTANT.API_GET_A_SHEET_BY_SLUG}`,{
-        params: {
-            slug: slugName
-        }
-    })
+    return request<Sheets>(API_CONSTANT.API_GET_A_SHEET_BY_SLUG, Methods.GET, {
+        slug: slugName
+    });
 }

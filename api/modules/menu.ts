@@ -22,5 +22,5 @@ export interface Menu{
 
 
 export const queryMenusList = (): AsyncData<BaseResp<Menu[]>, any> =>{
-    return request(`${API_CONSTANT.API_MENU_LIST}`,Methods.GET) as AsyncData<BaseResp<Menu[]>, any>;
+    return request<Menu[]>(`${API_CONSTANT.API_MENU_LIST}`,Methods.GET);
 }

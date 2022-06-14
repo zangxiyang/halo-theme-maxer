@@ -21,5 +21,5 @@ export interface Settings {
 
 
 export const querySettings = (): AsyncData<BaseResp<Settings>, any> =>{
-    return request(`${API_CONSTANT.API_SETTINGS}`, Methods.GET) as AsyncData<BaseResp<Settings>, any>;
+    return request<Settings>(`${API_CONSTANT.API_SETTINGS}`, Methods.GET);
 }

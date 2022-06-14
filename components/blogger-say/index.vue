@@ -45,6 +45,7 @@ import {Swiper, SwiperSlide} from "swiper/vue";
 // Import Swiper styles
 import 'swiper/css';
 import {Message} from "@arco-design/web-vue";
+import {querySheetBySlug} from "~/api/modules/bloggerSay";
 
 
 Core.use([Autoplay]);
@@ -70,6 +71,10 @@ onMounted(()=>{
 defineComponent({
   name: 'BloggerSay'
 })
+
+
+const {data} = querySheetBySlug();
+
 
 const sayList = ref([
   {
