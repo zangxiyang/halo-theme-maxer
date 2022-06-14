@@ -5,15 +5,15 @@
  * @说明:
  */
 
-/* halo api url */
-export const baseApi = "http://localhost:8090";
 
 
 
 
 export const API_CONSTANT  = {
-    API_MENU_LIST: `${baseApi}/api/content/menus`,
-    API_SETTINGS: `${baseApi}/api/content/themes/activation/settings`
+    API_MENU_LIST: `/api/content/menus`,
+    API_SETTINGS: `/api/content/themes/activation/settings`,
+    API_GET_A_SHEET_BY_SLUG: `/api/content/sheets/slug`,
+
 }
 
 export interface BaseResp <T> {

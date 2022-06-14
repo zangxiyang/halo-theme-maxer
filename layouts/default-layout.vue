@@ -22,14 +22,13 @@
 import MaxerHeader from "~/components/maxer-header/index.vue";
 import useSettingStore from "~/store/module/setting";
 import {storeToRefs} from "pinia";
-import {baseApi} from "~/api";
 import {useHead} from "#imports";
 
 const settingStore = useSettingStore();
 const {blogTitle, favIcon, description, keywords} = storeToRefs(settingStore);
 
 if (favIcon.value.indexOf("http") < 0){
-  favIcon.value = `${baseApi}${favIcon.value}`;
+  favIcon.value = `${import.meta.env.VITE_HALO_BASE_API}${favIcon.value}`;
 }
 
 useHead({

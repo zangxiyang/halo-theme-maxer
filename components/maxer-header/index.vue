@@ -67,7 +67,6 @@ import __ from "lodash";
 import {Menu, queryMenusList} from "~/api/modules/menu";
 import useSettingStore from "~/store/module/setting";
 import {storeToRefs} from "pinia";
-import {Message} from "@arco-design/web-vue";
 
 
 defineComponent({

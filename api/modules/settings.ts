@@ -1,7 +1,6 @@
 import {AsyncData} from "#app";
 import {API_CONSTANT, BaseResp} from "~/api";
-import {useFetch} from "#imports";
-import {Menu} from "~/api/modules/menu";
+import {Methods, request} from "~/utils/request";
 
 /**
  * @作者: Seale
@@ -22,5 +21,5 @@ export interface Settings {
 
 
 export const querySettings = (): AsyncData<BaseResp<Settings>, any> =>{
-    return useFetch(`${API_CONSTANT.API_SETTINGS}`) as unknown as AsyncData<BaseResp<Settings>, any>;
+    return request(`${API_CONSTANT.API_SETTINGS}`, Methods.GET) as AsyncData<BaseResp<Settings>, any>;
 }
