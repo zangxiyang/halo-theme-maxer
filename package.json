@@ -13,13 +13,12 @@
   "devDependencies": {
     "@arco-design/web-vue": "^2.29.1",
     "@nuxtjs/tailwindcss": "^5.1.2",
-    "@pinia/nuxt": "^0.1.9",
+    "@pinia/nuxt": "^0.3.1",
     "@types/lodash": "^4.14.182",
     "autoprefixer": "^10.4.7",
     "less": "^4.1.2",
     "less-loader": "^11.0.0",
     "nuxt": "3.0.0-rc.3",
-    "pinia": "^2.0.14",
     "sass": "^1.52.2",
     "typescript": "^4.7.3"
   },
@@ -27,6 +26,7 @@
     "@icon-park/vue-next": "^1.4.0",
     "animate.css": "^4.1.1",
     "loadsh": "^0.0.4",
-    "swiper": "^8.2.2"
+    "swiper": "^8.2.2",
+    "pinia": "^2.0.17"
   }
 }

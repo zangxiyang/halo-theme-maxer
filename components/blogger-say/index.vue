@@ -20,13 +20,14 @@
               :autoplay="{delay: 2000, disableOnInteraction: false, pauseOnMouseEnter: true}"
               :speed="400" direction="vertical"
               :loop="true"
+              :initial-slide="1"
               :allow-touch-move="false"
       >
-        <swiper-slide v-for="(item, index) in sayList" :key="index">
-          <div class="hover:text-maxer hover:duration-300 text-2xl" id="blog-say-item">
-            {{ item.content }}
-          </div>
-        </swiper-slide>
+          <swiper-slide v-for="(item, index) in sayList" :key="index">
+            <div class="hover:text-maxer hover:duration-300 text-2xl" id="blog-say-item">
+              {{ item.content }}
+            </div>
+          </swiper-slide>
       </swiper>
     </div>
     <div class="right-arrow hover:text-maxer hover:cursor-pointer transition-colors duration-200">
@@ -37,35 +38,25 @@
 </template>
 
 <script lang="ts" setup>
-import {defineComponent, onMounted, ref, useHead, useNuxtApp} from "#imports";
+import {defineComponent, onMounted, ref, useAsyncData, useHead, useNuxtApp} from "#imports";
 //@ts-ignore
-import {Swiper as Core,Autoplay} from "swiper";
+import {Swiper as Core, Autoplay, Virtual} from "swiper";
 //@ts-ignore
-import {Swiper, SwiperSlide} from "swiper/vue";
+import {Swiper, SwiperSlide, useSwiper, useSwiperSlide} from "swiper/vue";
 // Import Swiper styles
 import 'swiper/css';
+import 'swiper/css/autoplay'
+import {Comments, queryBloggerSayList, querySheetBySlug} from "~/api/modules/bloggerSay";
 import {Message} from "@arco-design/web-vue";
-import {querySheetBySlug} from "~/api/modules/bloggerSay";
 
 
-Core.use([Autoplay]);
 
-onMounted(()=>{
-  Message.success("挂载完成");
-/*  const swiper = new Swiper('.swiper', {
-    modules: [Autoplay],
-    speed: 400,
-    direction: 'vertical',
-    autoplay: {
-      delay: 2000,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true,
-    },
-    loop: true,
-    allowTouchMove: false,
 
-  })*/
-})
+
+
+
+Core.use([Autoplay,Virtual]);
+
 
 
 defineComponent({
@@ -73,30 +64,35 @@ defineComponent({
 })
 
 
-const {data, error} = querySheetBySlug();
-
-if (!error.value){
-
+// 获取博主说数据
+const sayList = ref<Comments[]>([]);
+const {data, error} = await querySheetBySlug();
+const commentsErr = ref(false);
+if (!error.value) {
+  const {data: commentsData, error: commentsError} = await queryBloggerSayList(data.value.data.id)
+  if (!commentsError.value) {
+    sayList.value = commentsData.value.data.content;
+  } else {
+    commentsErr.value = true;
+  }
 }
 
-const sayList = ref([
-  {
-    content: '从后端获取到的内容',
-    route: 'ssssssss'
-  },
-  {
-    content: '从后端获取到的内容1',
-    route: 'ssssssss'
-  },
-  {
-    content: '从后端获取到的内容2',
-    route: 'ssssssss'
-  },
-  {
-    content: '从后端获取到的内容3',
-    route: 'ssssssss'
+onMounted(()=>{
+
+  if (error.value || commentsErr.value){
+    Message.error("获取Halo配置失败，请检测后重试！");
   }
-]);
+
+})
+
+
+
+
+
+
+
+
+
 
 
 </script>

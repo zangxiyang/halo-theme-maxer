@@ -24,13 +24,13 @@ export function request<T>(url: string, method: Methods, params?: SearchParams, 
         params,
         body: data,
         headers: {
-            api_access_key
+            "API-Authorization": api_access_key
         },
         async onResponse({request,response}){
             // TODO 业务逻辑
         },
         async onRequest({request, options}){
-
+            // console.log("发送了请求", request, options)
         }
     }) as AsyncData<BaseResp<T>, any>;
 }
@@ -43,3 +43,5 @@ export enum Methods {
     DELETE = 'DELETE',
     PUT = 'PUT',
 }
+
+
