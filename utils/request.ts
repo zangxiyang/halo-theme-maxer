@@ -36,6 +36,7 @@ export function request<T>(url: string, method: Methods, params?: SearchParams, 
 }
 
 
+
 // 请求方式
 export enum Methods {
     GET = 'GET',

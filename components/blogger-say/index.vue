@@ -6,16 +6,6 @@
       博主说
     </div>
     <div class="main-content flex-1 relative overflow-hidden">
-        <!--<div class="swiper overflow-hidden">
-          &lt;!&ndash; Additional required wrapper &ndash;&gt;
-          <div class="swiper-wrapper"
-               style="height: 30px; line-height: 30px; display: flex; flex-direction: column; width: 100%; position: relative">
-            &lt;!&ndash; Slides &ndash;&gt;
-            <div class="swiper-slide"
-                 v-for="(item, index) in sayList" :key="index">{{ item.content }}
-            </div>
-          </div>
-        </div>-->
       <swiper style="height: 30px; line-height: 30px; display: flex; flex-direction: column; width: 100%; position: relative"
               :autoplay="{delay: 2000, disableOnInteraction: false, pauseOnMouseEnter: true}"
               :speed="400" direction="vertical"
