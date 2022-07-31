@@ -19,7 +19,7 @@
       {{ title }}
     </span>
   </div>
-  <div class="absolute top-0 left-0 flex justify-center rounded-br-2xl text-white bg-blue-600 text-xs p-2.5">
+  <div class="absolute top-0 left-0 flex justify-center rounded-br-2xl text-white bg-blue-600 text-xs p-2.5" title="置顶文章">
     顶
   </div>
 </div>
