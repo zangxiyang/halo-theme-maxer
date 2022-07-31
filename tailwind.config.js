@@ -17,10 +17,14 @@ module.exports = {
             textColor: {
                 'maxer': '#425aef'
             },
+            borderColor: {
+                'maxer': '#425aef'
+            },
             height: {
                 'banner': '370px',
                 '2.8': '2.8rem',
-                '3.2': '3.2rem'
+                '3.2': '3.2rem',
+                '68': '17rem'
             },
             width: {
                 '1140': '1140px',

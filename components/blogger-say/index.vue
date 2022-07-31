@@ -10,7 +10,7 @@
               :autoplay="{delay: 2000, disableOnInteraction: false, pauseOnMouseEnter: true}"
               :speed="400" direction="vertical"
               :loop="true"
-              :initial-slide="1"
+              :initial-slide="0"
               :allow-touch-move="false"
       >
           <swiper-slide v-for="(item, index) in sayList" :key="index">

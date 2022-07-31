@@ -3,16 +3,17 @@
   <div class="blogger-say-container mt-5">
     <blogger-say/>
   </div>
-  <a-button @click="click" type="primary" >显示Message</a-button>
-  <br><br>
-  用户名: {{userName}}
-  <br>
-  昵称：{{nickName}}
-  <br>
-  博客名：{{ blogTitle }}
-  <br>
-  首页公告：{{ indexNotice }}
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <main class="maxer-main-home pt-10">
+    <maxer-sticky-card title="测试标题" @click="click"/>
+  </main>
+
+
+
+
+
+
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -30,6 +31,7 @@ import useUserStore from "~/store/module/user";
 import {storeToRefs} from "pinia";
 import useSettingStore from "~/store/module/setting";
 import BloggerSay from "~/components/blogger-say/index.vue";
+import MaxerStickyCard from "~/components/maxer-sticky-card/index.vue";
 
 // 页面配置
 definePageMeta({
