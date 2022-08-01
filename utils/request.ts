@@ -46,3 +46,7 @@ export enum Methods {
 }
 
 
+export function isOk(data: any){
+    return data.value.status === 200;
+}
+

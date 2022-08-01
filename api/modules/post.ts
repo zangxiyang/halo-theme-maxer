@@ -63,8 +63,8 @@ export interface Tags {
 
 
 export const queryPostList = (page: number = 0, size: number = 10)=>{
-    return request<BasePageResp<Posts>>(API_CONSTANT.API_GET_POST_LIST, Methods.GET, {
-        page,
-        size
+    return request<BasePageResp<Posts[]>>(API_CONSTANT.API_GET_POST_LIST, Methods.GET, {
+        page: page,
+        size: size
     });
 }
