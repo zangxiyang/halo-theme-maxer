@@ -1,5 +1,7 @@
 
-<div align="center">LOGO站位</div> 
+<div align="center">
+<img src="./assets/img/maxer-theme-logo.png" alt="LOGO">
+</div> 
 
 <div align="center">
 一个基于 <code>Nuxt SSR</code> 渲染，前后端分离的Halo主题。
