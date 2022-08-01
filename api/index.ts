@@ -13,9 +13,8 @@ export const API_CONSTANT = {
     API_MENU_LIST: `/api/content/menus`,
     API_SETTINGS: `/api/content/themes/activation/settings`,
     API_GET_A_SHEET_BY_SLUG: `/api/content/sheets/slug`,
-    API_GET_COMMENTS: (id: number) => {
-        return `/api/content/sheets/${id}/comments/tree_view`
-    },
+    API_GET_COMMENTS: (id: number) => `/api/content/sheets/${id}/comments/tree_view`,
+    API_GET_POST_LIST: `/api/content/posts`,
 
 }
 

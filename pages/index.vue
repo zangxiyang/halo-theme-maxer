@@ -32,6 +32,7 @@ import {storeToRefs} from "pinia";
 import useSettingStore from "~/store/module/setting";
 import BloggerSay from "~/components/blogger-say/index.vue";
 import MaxerStickyCard from "~/components/maxer-sticky-card/index.vue";
+import {queryPostList} from "~/api/modules/post";
 
 // 页面配置
 definePageMeta({
@@ -54,6 +55,15 @@ const click = () => {
   Message.success("成功");
   Notification.success("通知成功");
   isShow.value = true;
+}
+
+
+// 获取首页文章
+
+const {data, error} = queryPostList();
+
+if (!error.value){
+  console.log(data.value.data.content)
 }
 
 
