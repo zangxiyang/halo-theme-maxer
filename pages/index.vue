@@ -14,7 +14,7 @@
     <!-- 中心布局 -->
     <div class="main-box pt-10 flex items-start">
       <div class="flex-grow mr-20">
-        <maxer-article-card/>
+        <maxer-article-card title="测试标题测试标题测试标题测试毕涛测试标题测试标题测试标题测试毕涛测试标题测试标题测试标题测试毕涛"/>
       </div>
       <div class="flex-none w-96 bg-pink-700">右侧</div>
     </div>

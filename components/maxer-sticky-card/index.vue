@@ -27,13 +27,13 @@
 </template>
 
 <script setup lang="ts">
-import {defineComponent} from "vue";
+import {defineComponent, defineProps} from "vue";
 
 
 const props = defineProps({
   title: String,
   img: String,
-  id: String | Number
+  id: Number
 });
 
 defineComponent({
